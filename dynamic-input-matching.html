@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <input id = "input-str" type = "html/text" placeholder = "Type your favorite food..."></input>
+        <p id = "suggestions"></p>        
+        
+        <script>
+              const foods = ["Dumplings", "Ramen", "Tempura", "Pizza", "Burger", "Burrito", "Sushi", "Pad Thai", "Sandwich", "Brownie", "Frozen Yogurt", "Garlic Fries", "Salad", "Chargrilled Oysters", "Crawfish", "Porridge", "Boiled Eggs", "Protein Powder", "Smoke Cheese", "Pesto Pasta", "Dim Sum", "Smoothie", "Rotisserie Chicken" ]
+
+              function findSuggestions(inputStr) {
+                  let suggestions = [];
+                  if (!inputStr) return suggestions;
+                  for (let food in foods) {
+                      // Takes case into consideration
+                      if (foods[food].toLowerCase().includes(inputStr.toLowerCase())) {
+                          suggestions.push(foods[food]);
+                      }
+                  }
+                  return suggestions;
+              }
+
+              var displaySuggestions = function() {
+                  var inputStr = document.getElementById("input-str").value;
+                  document.getElementById("suggestions").innerHTML = findSuggestions(inputStr).map((c) => "<div>" + c + "</div>").join("");
+              }
+
+              document.getElementById("input-str").addEventListener("keydown", displaySuggestions);
+        </script>
+
+    </body>
+</html>
